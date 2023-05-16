@@ -10,7 +10,6 @@ from robot.api.deco import keyword
 
 def price_sorting_control(): #Create List of prices
     elements_count = get_element_count("//div[contains(@class,'products__item')]")
-    
     prices = []
     for i in range(elements_count):
         locator = "//div[contains(@class,'products__item')][{}]//span[contains(@class,'number left')]".format(i+1)
