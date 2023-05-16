@@ -23,7 +23,7 @@ def price_sorting_control(): #Create List of prices
     for i in range(count_for_compare):
         logging.info('toto je prvy index {} a toto je druhy index {}'.format(prices[i], prices[i+1]))
         if prices[i] < prices[i+1]:
-            logging.warning('sorting of items is not corect form high to low')
+            raise AssertionError('sorting of items is not corect form high to low')
             
         
         #price_num = _Converter.convert_to_number(_Converter, price_txt3)
