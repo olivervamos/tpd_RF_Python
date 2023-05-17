@@ -2,7 +2,7 @@
 Library    QWeb
 Library    String
 Library    Collections
-
+Library    ../libraries/custom_library.py
 
 *** Variables ***
 
@@ -18,9 +18,6 @@ Navigate to category
 
 Sorting high to low
     Click Text    Od najdrahšieho
-
-Sorting control
-        
 
 #Price sorting control
     #Create List of prices
@@ -85,6 +82,7 @@ Add items to basket
 Open basket
     Click Element    //a[contains(@title,'Zobraziť nákupný košík')]//r-span[contains(@data-element,'cart')]    anchor=//a[contains(@title,'Prihlásenie')] 
     Click Element    //a[contains(@title,'Prejsť do nákupného košíka')]    anchor=//a[contains(@title,'Zobraziť nákupný košík')]//r-span[contains(@data-element,'cart')]
+
 Delete from basket and verify remove  #${position_item} start from 0.
     [Arguments]    ${position_item}
     ${delete_item}    Get From List    ${NAMES_ITEMS_BASKET}    ${position_item}
@@ -105,10 +103,10 @@ Verify text in every item
     [Arguments]    ${verify_text}
     #${last_page}    Get Text    //div[contains(@class,'pager__count')]/span    between=???${SPACE}stránok    anchor=stránok
     ${xpath}    Set Variable    //li[@class= 'pager__item'][last()]
-    ${last_page}    Get Text    ${xpath}
+    ${last_page}    QWeb.Get Text    ${xpath}
     FOR    ${counter}    IN RANGE    ${last_page}-1
         
-        ${elements_count}    Get Element Count    //div[contains(@class, 'products__item')]
+        ${elements_count}    QWeb.Get Element Count    //div[contains(@class, 'products__item')]
         FOR    ${counter}    IN RANGE    ${elements_count}
             Verify Element Text    //div[contains(@class, 'products__item')][${counter}+1]//a[contains(@class, 'products__name')]    
             ...    ${verify_text}

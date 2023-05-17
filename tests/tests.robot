@@ -1,6 +1,5 @@
 *** Settings ***
 Resource    ../resources/keywords.robot
-Library    ../libraries/custom_library.py
 Test Setup    Setup Browser
 Test Teardown    CloseBrowser
 
